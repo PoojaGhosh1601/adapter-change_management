@@ -66,6 +66,7 @@ class ServiceNowAdapter extends EventEmitter {
       password: this.props.auth.password,
       serviceNowTable: this.props.serviceNowTable
     });
+    console.log("from constructor")
   }
 
   /**
