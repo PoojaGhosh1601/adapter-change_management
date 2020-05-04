@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/PoojaGhosh1601/adapter-change_management#readme",
   "dependencies": {
+    "@itentialopensource/adapter-servicenow": "^2.2.0",
     "request": "^2.88.2"
   }
 }
