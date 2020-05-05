@@ -104,7 +104,16 @@ class ServiceNowAdapter extends EventEmitter {
  *   that handles the response.
  */
 healthcheck(callback) {
- this.emitOnline()
+ //this.emitOnline()
+ this.getRecord((result, error) => {
+     if (error) {
+         this.emitOffline()
+
+     }
+     else {
+         this.emitOnline()
+     }
+ });
 }
 
   /**
