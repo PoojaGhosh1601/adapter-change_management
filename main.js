@@ -184,8 +184,10 @@ healthcheck(callback) {
      this.connector.get( (data, error) => {
       if (error) {
         console.error(`\nError returned from GET request:\n${JSON.stringify(error)}`);
+        return error
       }
       console.log(`\nResponse returned from GET request:\n${JSON.stringify(data)}`)
+      return data
     });
   }
 
