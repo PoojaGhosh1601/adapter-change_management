@@ -106,14 +106,16 @@ class ServiceNowAdapter extends EventEmitter {
 healthcheck(callback) {
  //this.emitOnline()
  this.getRecord((result, error) => {
-     if (error) {
-         this.emitOffline()
+     this.emitOnline()
+//      if (error) {
+//          this.emitOffline()
 
-     }
-     else {
-         this.emitOnline()
-     }
- });
+//      }
+//      else {
+//          this.emitOnline()
+//      }
+//  });
+});
 }
 
   /**
@@ -184,11 +186,12 @@ healthcheck(callback) {
      this.connector.get( (data, error) => {
       if (error) {
         console.error(`\nError returned from GET request:\n${JSON.stringify(error)}`);
-        return error
+        
       }
       console.log(`\nResponse returned from GET request:\n${JSON.stringify(data)}`)
-      return data
+      
     });
+    
   }
 
   /**
