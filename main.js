@@ -124,7 +124,17 @@ healthcheck(callback) {
       * healthcheck(), execute it passing the error seen as an argument
       * for the callback's errorMessage parameter.
       */
+    
+      (err,callback) =>{
+          if(err) {
+      log.error(`External system ${this.id} is temporarily down for maintenance`);
       this.emitOffline()
+      }
+      else {
+          this.healthcheck(callback)
+      }
+      }
+
    } else {
      /**
       * Write this block.
@@ -136,7 +146,16 @@ healthcheck(callback) {
       * parameter as an argument for the callback function's
       * responseData parameter.
       */
-      this.emitOnline()
+      (result,callback) =>{
+          if(result) {
+          log.debug("Calling ServiceNowAdaptor system's method healthcheck().")
+          this.emitOnline()
+          }
+          else {
+              this.healthcheck(callback)
+          }
+      }
+      
    }
  });
 }
@@ -195,6 +214,17 @@ healthcheck(callback) {
      * get() takes a callback function.
      */
 
+     let result = {
+         change_ticket_number:"",
+         active:"",
+         priority:"",
+         description:"",
+         work_start:"",
+         work_end:"",
+         change_ticket_key:""
+
+     }
+
      this.connector.get( (data, error) => {
       if (error) {
         console.error(`\nError returned from GET request:\n${JSON.stringify(error)}`);
@@ -219,6 +249,17 @@ healthcheck(callback) {
      * Note how the object was instantiated in the constructor().
      * post() takes a callback function.
      */
+
+     let result = {
+         change_ticket_number:"",
+         active:"",
+         priority:"",
+         description:"",
+         work_start:"",
+         work_end:"",
+         change_ticket_key:""
+
+     }
 
      this.connector.post({ serviceNowTable: 'change_request' }, (data, error) => {
       if (error) {
