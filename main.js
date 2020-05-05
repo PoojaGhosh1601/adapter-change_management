@@ -105,6 +105,7 @@ class ServiceNowAdapter extends EventEmitter {
  */
 healthcheck(callback) {
 
+this.emitOnline();
 }
 
   /**
