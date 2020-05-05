@@ -121,7 +121,11 @@ healthcheck(callback) {
     * or the instance was hibernating. You must write
     * the blocks for each branch.
     */
-   if (error) {
+    let status =this.connector.isHibernating(response)
+    if(status){
+        this.emitOffline()
+    }
+   else if (error) {
      /**
       * Write this block.
       * If an error was returned, we need to emit OFFLINE.
