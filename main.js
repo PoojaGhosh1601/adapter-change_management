@@ -137,6 +137,7 @@ healthcheck(callback) {
       * responseData parameter.
       */
       console.log('inside else block')
+      this.emitOnline()
    }
  });
 }
