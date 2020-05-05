@@ -103,7 +103,34 @@ class ServiceNowAdapter extends EventEmitter {
  * @param {ServiceNowAdapter~requestCallback} [callback] - The optional callback
  *   that handles the response.
  */
-healthcheck(callback) {
+
+
+  /**
+   * @memberof ServiceNowAdapter
+   * @method emitOffline
+   * @summary Emit OFFLINE
+   * @description Emits an OFFLINE event to IAP indicating the external
+   *   system is not available.
+   */
+  emitOffline() {
+    this.emitStatus('OFFLINE');
+    log.warn('ServiceNow: Instance is unavailable.');
+  }
+
+  /**
+   * @memberof ServiceNowAdapter
+   * @method emitOnline
+   * @summary Emit ONLINE
+   * @description Emits an ONLINE event to IAP indicating external
+   *   system is available.
+   */
+  emitOnline() {
+    this.emitStatus('ONLINE');
+    log.info('ServiceNow: Instance is available.');
+  }
+
+
+  healthcheck(callback) {
  this.getRecord((result, error) => {
    /**
     * For this lab, complete the if else conditional
@@ -142,30 +169,6 @@ healthcheck(callback) {
    }
  });
 }
-
-  /**
-   * @memberof ServiceNowAdapter
-   * @method emitOffline
-   * @summary Emit OFFLINE
-   * @description Emits an OFFLINE event to IAP indicating the external
-   *   system is not available.
-   */
-  emitOffline() {
-    this.emitStatus('OFFLINE');
-    log.warn('ServiceNow: Instance is unavailable.');
-  }
-
-  /**
-   * @memberof ServiceNowAdapter
-   * @method emitOnline
-   * @summary Emit ONLINE
-   * @description Emits an ONLINE event to IAP indicating external
-   *   system is available.
-   */
-  emitOnline() {
-    this.emitStatus('ONLINE');
-    log.info('ServiceNow: Instance is available.');
-  }
 
   /**
    * @memberof ServiceNowAdapter
