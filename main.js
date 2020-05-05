@@ -239,22 +239,19 @@ healthcheck(callback) {
      * post() takes a callback function.
      */
 
-     let result = {
-         change_ticket_number:"",
-         active:"",
-         priority:"",
-         description:"",
-         work_start:"",
-         work_end:"",
-         change_ticket_key:""
+    //  let result = {
+    //      change_ticket_number:"",
+    //      active:"",
+    //      priority:"",
+    //      description:"",
+    //      work_start:"",
+    //      work_end:"",
+    //      change_ticket_key:""
 
-     }
+    //  }
 
-     this.connector.post({ serviceNowTable: 'change_request' }, (data, error) => {
-      if (error) {
-        console.error(`\nError returned from POST request:\n${JSON.stringify(error)}`);
-      }
-      console.log(`\nResponse returned from POST request:\n${JSON.stringify(data)}`)
+     this.connector.post((data, error) => {
+      callback(data, error)
     });
   }
 }
