@@ -205,17 +205,6 @@ healthcheck(callback) {
      * get() takes a callback function.
      */
 
-    //  let result = {
-    //      change_ticket_number:"",
-    //      active:"",
-    //      priority:"",
-    //      description:"",
-    //      work_start:"",
-    //      work_end:"",
-    //      change_ticket_key:""
-
-    //  }
-
      this.connector.get( (data, error) => {
       callback(data,error)
     });
