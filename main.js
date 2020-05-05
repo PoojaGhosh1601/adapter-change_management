@@ -125,6 +125,7 @@ healthcheck(callback) {
       * for the callback's errorMessage parameter.
       */
       console.log('inside error')
+      emitOffline()
    } else {
      /**
       * Write this block.
@@ -137,7 +138,7 @@ healthcheck(callback) {
       * responseData parameter.
       */
       console.log('inside else block')
-      this.emitOnline()
+      emitOnline()
    }
  });
 }
