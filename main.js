@@ -228,9 +228,14 @@ healthcheck(callback) {
 
      log.info(' inside get record')
 
+     let response ={}
+
      this.connector.get( (data, error) => {
       callback(data,error)
+      response = JSON.parse(data)
      });
+
+     log.info(' calling and getting response ..........................')
   }
 
   /**
