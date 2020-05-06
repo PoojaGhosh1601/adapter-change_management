@@ -138,6 +138,7 @@ healthcheck(callback) {
       * healthcheck(), execute it passing the error seen as an argument
       * for the callback's errorMessage parameter.
       */
+      log.error(`External system ${this.id} is temporarily down for maintenance`);
       this.emitOffline()
    } else {
      /**
@@ -150,6 +151,7 @@ healthcheck(callback) {
       * parameter as an argument for the callback function's
       * responseData parameter.
       */
+      log.debug("Calling ServiceNowAdaptor system's method healthcheck().")
       this.emitOnline()
    }
  });
