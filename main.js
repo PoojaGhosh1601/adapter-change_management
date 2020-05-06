@@ -125,6 +125,7 @@ healthcheck(callback) {
     // if(status){
     //     this.emitOffline()
     // }
+    
    if (error) {
      /**
       * Write this block.
@@ -220,10 +221,16 @@ healthcheck(callback) {
 
 
 
-     
-     //console.log(this.connector.get(callback))
+    //  log.error(`this is info message`)
+    //  this.connector.get(callback)
      //log.error(`this is info message`)
-     console.log("info message : ");
+     //console.log("info message : ");
+
+     log.info(' inside get record')
+
+     this.connector.get( (data, error) => {
+      callback(data,error)
+     });
   }
 
   /**
