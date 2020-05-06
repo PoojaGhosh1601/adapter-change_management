@@ -217,7 +217,13 @@ healthcheck(callback) {
      * get() takes a callback function.
      */
 
-     this.connector.get(callback)
+
+
+
+     
+     //console.log(this.connector.get(callback))
+     //log.error(`this is info message`)
+     console.log("info message : ");
   }
 
   /**
