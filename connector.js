@@ -123,11 +123,11 @@ processRequestResults(error, response, body, callback) {
  */
 sendRequest(callOptions, callback) {
   // Initialize return arguments for callback
-  let uri;
-  if (callOptions.query)
-    uri = this.constructUri(callOptions.serviceNowTable, callOptions.query);
-  else
-    uri = this.constructUri(callOptions.serviceNowTable);
+//   let uri;
+//   if (callOptions.query)
+//     uri = this.constructUri(callOptions.serviceNowTable, callOptions.query);
+//   else
+//     uri = this.constructUri(callOptions.serviceNowTable);
   /**
    * You must build the requestOptions object.
    * This is not a simple copy/paste of the requestOptions object
@@ -142,7 +142,10 @@ sendRequest(callOptions, callback) {
     },
     baseUrl: this.options.url,
     uri: `/api/now/table/${callOptions.serviceNowTable}?sysparm_limit=1`,
+    
+ 
   };
+console.log(this.uri)
   
   request(requestOptions, (error, response, body) => {
     this.processRequestResults(error, response, body, (processedResults, processedError) => callback(processedResults, processedError));
