@@ -140,7 +140,13 @@ healthcheck(callback) {
       */
       log.error(`External system ${this.id} is temporarily down for maintenance`);
       this.emitOffline()
-   } else {
+   } 
+//    else if(isHibernating(response)) {
+//        log.error(`External system ${this.id} is Hibernating`);
+//       this.emitOffline()
+
+//    }
+   else {
      /**
       * Write this block.
       * If no runtime problems were detected, emit ONLINE.
@@ -211,10 +217,7 @@ healthcheck(callback) {
      * get() takes a callback function.
      */
 
-     this.connector.get( (data, error) => {
-      callback(data,error)
-    });
-    
+     this.connector.get(callback)
   }
 
   /**
