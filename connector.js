@@ -146,7 +146,7 @@ sendRequest(callOptions, callback) {
     
  
   };
-console.log(this.uri)
+console.log(uri)
   
   request(requestOptions, (error, response, body) => {
     this.processRequestResults(error, response, body, (processedResults, processedError) => callback(processedResults, processedError));
