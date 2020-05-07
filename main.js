@@ -247,24 +247,10 @@ console.log(returnVar)
 
 return returnVar
 
-<<<<<<< HEAD
      });
 
      log.info(' calling and getting response ..........................')
      //log.info(response)
-=======
-    //  let response ={}
-
-     this.connector.get( (data, error) => {
-      callback(data,error)
-      responseValue = JSON.parse(data.body.response)
-
-      log.info(`the responce of the body is:................................  ${responseValue}`)
-     });
-
-     log.info(' calling and getting response ..........................')
-     log.info('updated')
->>>>>>> dc890ac2c9d4e7f39f5da72f135377e5219f1f92
   }
 
   /**
@@ -302,3 +288,4 @@ return returnVar
 }
 
 module.exports = ServiceNowAdapter;
+
