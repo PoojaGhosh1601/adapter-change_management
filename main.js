@@ -228,14 +228,17 @@ healthcheck(callback) {
 
      log.info(' inside get record')
 
-     let response ={}
+    //  let response ={}
 
      this.connector.get( (data, error) => {
       callback(data,error)
-      response = JSON.parse(data)
+      responseValue = JSON.parse(data.body.response)
+
+      log.info(`the responce of the body is:................................  ${responseValue}`)
      });
 
      log.info(' calling and getting response ..........................')
+     log.info('updated')
   }
 
   /**
