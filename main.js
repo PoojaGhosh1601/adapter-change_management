@@ -219,7 +219,7 @@ healthcheck(callback) {
      */
 
     
-     this.connector.get( (data, error) => {
+    var valueObj= this.connector.get( (data, error) => {
       callback(data,error)
      
      var returnVar={}
@@ -251,6 +251,7 @@ return returnVar
 
      log.info(' calling and getting response ..........................')
      //log.info(response)
+     return valueObj
   }
 
   /**
@@ -269,17 +270,6 @@ return returnVar
      * Note how the object was instantiated in the constructor().
      * post() takes a callback function.
      */
-
-    //  let result = {
-    //      change_ticket_number:"",
-    //      active:"",
-    //      priority:"",
-    //      description:"",
-    //      work_start:"",
-    //      work_end:"",
-    //      change_ticket_key:""
-
-    //  }
 
      this.connector.post((data, error) => {
       callback(data, error)
