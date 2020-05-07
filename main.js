@@ -218,19 +218,39 @@ healthcheck(callback) {
      * get() takes a callback function.
      */
 
-
-
-
-    //  log.error(`this is info message`)
-    //  this.connector.get(callback)
-     //log.error(`this is info message`)
-     //console.log("info message : ");
-
-     log.info(' inside get record')
-
+    
      this.connector.get( (data, error) => {
       callback(data,error)
+     
+     var returnVar={}
+     
+ for(var key in data)
+{
+    if(key === "body")
+{
+    var obj= data[key];
+    var obj2=JSON.parse(obj)
+    var obj3=obj2.result
+
+   returnVar ={
+      "change_ticket_number":obj3[0].number,
+      "active":obj3[0].active,
+      "priority":obj3[0].priority,
+      "description":obj3[0].description,
+      "work_start":obj3[0].work_start,
+      "work_end":obj3[0].work_end,
+      "change_ticket_key":obj3[0].sys_id
+  }
+}} 
+
+console.log(returnVar)
+
+return returnVar
+
      });
+
+     log.info(' calling and getting response ..........................')
+     //log.info(response)
   }
 
   /**
