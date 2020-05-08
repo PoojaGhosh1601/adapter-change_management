@@ -113,8 +113,9 @@ class ServiceNowAdapter extends EventEmitter {
  * @param {ServiceNowAdapter~requestCallback} [callback] - The optional callback
  *   that handles the response.
  */
-healthcheck(callback) {
- this.getRecord((result, error) => {
+async healthcheck(callback) {
+    console.log("inside healthcheck.....................Start")
+var obj =await this.getRecord((result, error) => {
    /**
     * For this lab, complete the if else conditional
     * statements that check if an error exists
@@ -158,10 +159,14 @@ healthcheck(callback) {
       * parameter as an argument for the callback function's
       * responseData parameter.
       */
+      //console.log(result)
       log.debug("Calling ServiceNowAdaptor system's method healthcheck().")
+      console.log("I am inside else block ...................")
       this.emitOnline()
    }
  });
+ console.log("the value of obj is......................................",obj)
+ console.log("the healthcheck function returns................")
 }
 
   /**
@@ -211,6 +216,7 @@ healthcheck(callback) {
    *   handles the response.
    */
   getRecord(callback) {
+
     /**
      * Write the body for this function.
      * The function is a wrapper for this.connector's get() method.
@@ -218,11 +224,15 @@ healthcheck(callback) {
      * get() takes a callback function.
      */
 
+     
+
     
-    var valueObj= this.connector.get( (data, error) => {
-      callback(data,error)
+     this.connector.get( (data, error) => {
+         
+      
      
      var returnVar={}
+     //var returnArray =[returnVar]
      
  for(var key in data)
 {
@@ -241,17 +251,24 @@ healthcheck(callback) {
       "work_end":obj3[0].work_end,
       "change_ticket_key":obj3[0].sys_id
   }
+
+
 }} 
+returnVar.callback = callback;
+log.info(' calling and getting response ..........................')
+console.log("the value is:..................${}",returnVar)
 
-console.log(returnVar)
+data["body"]=obj2
 
-return returnVar
+data["body"]["result"]= returnVar
+callback(data,error)
 
      });
 
-     log.info(' calling and getting response ..........................')
+     
      //log.info(response)
-     return valueObj
+    
+     
   }
 
   /**
