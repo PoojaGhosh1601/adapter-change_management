@@ -34,7 +34,7 @@ function mainOnObject() {
     }
     console.log(`\nResponse returned from GET request:\n${JSON.stringify(data)}`)
   });
-  connector.post({ serviceNowTable: 'change_request' }, (data, error) => {
+  connector.post((data, error) => {
     if (error) {
       console.error(`\nError returned from POST request:\n${JSON.stringify(error)}`);
     }

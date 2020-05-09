@@ -259,35 +259,42 @@ class ServiceNowAdapter extends EventEmitter {
      * get() takes a callback function.
      */
      this.connector.get( (data, error) => {
-     var returnVar={}
+     var changeTicket={}
+     var ArrayObj = []
      
  for(var key in data)
 {
     if(key === "body")
 {
     var obj= data[key];
-    var obj2=JSON.parse(obj)
-    var obj3=obj2.result
+    var obj2=JSON.parse(obj);
+    var obj3=obj2.result;
+
+    
 
     console.log("the value inside post.................",obj3)
-
-   returnVar ={
-      "change_ticket_number":obj3[0].number,
-      "active":obj3[0].active,
-      "priority":obj3[0].priority,
-      "description":obj3[0].description,
-      "work_start":obj3[0].work_start,
-      "work_end":obj3[0].work_end,
-      "change_ticket_key":obj3[0].sys_id
+for(let i=0; i<obj3.length;i++)
+{
+    changeTicket ={
+      "change_ticket_number":obj3[i].number,
+      "active":obj3[i].active,
+      "priority":obj3[i].priority,
+      "description":obj3[i].description,
+      "work_start":obj3[i].work_start,
+      "work_end":obj3[i].work_end,
+      "change_ticket_key":obj3[i].sys_id
   }
 
+  ArrayObj.push(changeTicket)
+}
+   
 }} 
 
-console.log("the value is:.....",returnVar)
+console.log("the value is:.....",ArrayObj)
 
-data["body"]=obj2
+data=ArrayObj
 
-data["body"]["result"]= returnVar
+//data["body"]["result"]= returnVar
 callback(data,error)
 
      });
@@ -311,17 +318,22 @@ callback(data,error)
      * post() takes a callback function.
      */
      this.connector.post( (data, error) => {
-     var returnVar={}
+     var newChangeTicket={}
+     
      
  for(var key in data)
 {
     if(key === "body")
 {
     var obj= data[key];
-    var obj2=JSON.parse(obj)
-    var obj3=obj2.result
+    var obj2=JSON.parse(obj);
+    var obj3=obj2.result;
 
-   returnVar ={
+    
+
+    console.log("the value inside post.................",obj3)
+
+    newChangeTicket ={
       "change_ticket_number":obj3.number,
       "active":obj3.active,
       "priority":obj3.priority,
@@ -330,17 +342,16 @@ callback(data,error)
       "work_end":obj3.work_end,
       "change_ticket_key":obj3.sys_id
   }
-
 }} 
 
-console.log("the value is:.....",returnVar)
 
-data["body"]=obj2
+data=newChangeTicket
 
-data["body"]["result"]= returnVar
+//data["body"]["result"]= returnVar
 callback(data,error)
 
      });
+
   }
 }
 

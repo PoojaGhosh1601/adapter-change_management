@@ -206,7 +206,7 @@ console.log(uri)
 post( callback) {
     let callOptions = this.options;
   callOptions.method = 'POST';
-  this.sendRequest(callOptions, (results, error) => callback(results, error));
+  this.sendRequest(callOptions, callback);
 }
 
 }
