@@ -137,8 +137,13 @@ class ServiceNowAdapter extends EventEmitter {
       * for the callback's errorMessage parameter.
       */
       log.error(`External system ${this.id} is temporarily down for maintenance`);
+
       this.emitOffline()
+      if(callback){
+          callback(error)
+      }
    } 
+
 
    else {
      /**
@@ -155,6 +160,9 @@ class ServiceNowAdapter extends EventEmitter {
       log.debug("Calling ServiceNowAdaptor system's method healthcheck().")
       console.log("I am inside else block ...................")
       this.emitOnline()
+      if(callback){
+          callback(result)
+      }
    }
  });
 
@@ -182,6 +190,10 @@ class ServiceNowAdapter extends EventEmitter {
       */
       log.error(`External system ${this.id} is temporarily down for maintenance`);
       this.emitOffline()
+       
+      if(callback){
+          callback(error)
+      }
    } 
 
    else {
@@ -197,8 +209,10 @@ class ServiceNowAdapter extends EventEmitter {
       */
       //console.log(result)
       log.debug("Calling ServiceNowAdaptor system's method healthcheck().")
-      console.log("I am inside else block ...................")
       this.emitOnline()
+      if(callback){
+          callback(result)
+      }
    }
  })
  
